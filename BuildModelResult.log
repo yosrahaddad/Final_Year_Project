@@ -1,0 +1,11 @@
+==================================
+Generation Information: View dynamics://View/EDICustPackingSlipJourEntity: Is Runtime Services mode: False
+ExternalReference Warning: dynamics://Reference/Azure.Core: Assembly 'Azure.Core, Version=1.15.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8' failed to load because it was not found.
+ExternalReference Warning: dynamics://Reference/Azure.Storage.Blobs: Assembly 'Azure.Core, Version=1.15.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8' failed to load because it was not found.
+Compile Warning: Table Method dynamics://Table/EDICustPackingSlipJour/Method/insert: [(16,9),(16,67)]: The type conversion from 'real' to 'int' loses range and precision.
+Compile Warning: Class Method dynamics://Class/EDIParseEngelvartXMLfile/Method/ParseXMLFile: [(235,13),(235,25)]: The statement is unreachable.
+Compile Warning: Class Method dynamics://Class/EDIRetrieveSalesOrderData/Method/Reserve: [(23,9),(23,43)]: The type conversion from 'int64' to 'int' loses range.
+Compile Warning: Class Method dynamics://Class/EDIRetrieveSalesOrderData/Method/Reserve: [(34,9),(34,48)]: The type conversion from 'int64' to 'int' loses range.
+==================================
+Errors: 0
+Warnings: 6

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Diagnostics
+  GenerationTime="2023-06-29T19:28:46.8975534+00:00">
+  <Items>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/EDIImportXMLService/Method/Run</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>InvalidTypeNameAsQualifier</Moniker>
+      <Line>67</Line>
+      <Column>67</Column>
+      <EndLine>67</EndLine>
+      <EndColumn>75</EndColumn>
+      <Message>The qualifier 'filePath' is not valid in this context. Use a variable of this type instead. </Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/EDIImportXMLService/Method/Run</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>82</Line>
+      <Column>53</Column>
+      <EndLine>82</EndLine>
+      <EndColumn>80</EndColumn>
+      <Message>'destinationTreatedDirectory' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/EDIImportXMLService/Method/Run</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>88</Line>
+      <Column>53</Column>
+      <EndLine>88</EndLine>
+      <EndColumn>78</EndColumn>
+      <Message>'destinationErrorDirectory' is not declared.</Message>
+    </Diagnostic>
+  </Items>
+  <Aliases />
+</Diagnostics>

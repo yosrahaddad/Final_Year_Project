@@ -1,0 +1,22 @@
+﻿EDIParseEngelvartXMLfile	
+EDIExportCSVpackingSlipJour	
+EDIExtItemNumberMatch	
+EDIRetrieveSalesOrderData	
+EDIImportXMLController	SysOperationServiceController
+EDIImportXMLService	SysOperationServiceBase
+EDISalesLeadTimes	
+EDIRandomWorkOrderNum	
+EDIGetTheNextFile	
+EDIExportCsvService	SysOperationServiceBase
+EDIGetCustomerEmail	
+EDIParseBiotexXMLfile	
+EDIExportCSVContract	
+EDISalesOrderConfirmation	
+EDIImportXMLContract	SysOperationDataContractBase
+CustPackingSlipJour_EDI_Extension	
+EDIDialogLookupUIBuilder	SysOperationAutomaticUIBuilder
+EDIVerifyDuplicationCmd	
+EDIExportCsvController	SysOperationServiceController
+EDIImportXMLDocument	
+EDICommandeFournisseur	
+EDIMailNotification	

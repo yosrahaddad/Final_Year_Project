@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIGetCustomerEmail</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+ class EDIGetCustomerEmail
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>GetCustomerEmailByAccount</Name>
+				<Source><![CDATA[
+    //chercher l'email du client
+    public str GetCustomerEmailByAccount(str _custAccount)
+    {
+        CustTable custTable;
+        DirPartyTable dirPartyTable;
+        str emailAddress;
+
+        // Query the DirPartyContactInfoView to retrieve the email address
+        DirPartyContactInfoView dirPartyContactInfoView;
+
+        while select firstOnly Locator
+        from dirPartyContactInfoView
+        where dirPartyContactInfoView.Party == dirPartyTable.RecId &&
+              dirPartyContactInfoView.Type == LogisticsElectronicAddressMethodType::Email
+              join RecId from custTable
+              where custTable.AccountNum == _custAccount
+        {
+            emailAddress = dirPartyContactInfoView.Locator;
+            break;
+        }
+
+        return emailAddress;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

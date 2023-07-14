@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIMailNotification</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+ class EDIMailNotification
+{
+    
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>sendCustomMail</Name>
+				<Source><![CDATA[
+    public void sendCustomMail(str _file,str _mailreceiver,int _bodycode,int _subjectcode , str workordernumber )
+        {
+            EDIMailNotification  tEmail= new  EDIMailNotification();
+            try
+            {
+                str sUserId;
+                str userEmail;
+                str subject;
+                str body;
+                utcdatetime myDateTime = DateTimeUtil::getSystemDateTime();
+
+         
+                if (_subjectcode==1)
+                {
+                    subject="Error file";
+                }
+                if (_subjectcode==2)
+                {
+                    subject="file success";
+                }
+
+                if(_bodycode==1)
+                {
+                    body=strFmt("Le fichier %1, le numéro de commande  %2 est répété. Priére de le vérifier!. Fichier traité à:  %3.",_file,workordernumber,myDateTime);
+                }
+
+                if(_bodycode==2)
+                {
+                    body=strFmt("Le fichier %1, pour la commande %2 le produit commandé n'exist pas, Priére de verifier le produit commandé. Fichier traité à: %3.",_file,workordernumber,myDateTime);
+                }
+                //if(_bodycode==3)
+                //{
+                //    body=strFmt("the file %1, has the structure wrong. Check it out and resend please.file processed at, %3.",_file,myDateTime);
+                //}
+
+                if(_bodycode==4)
+                {
+                    body=strFmt("Le fichier %1, la date de livraison attendu est trop tot pour La commande %2, est ce que vous acceptez que votre commande sera livré un peu tard!?, Fichier traité à: %3.",_file,workordernumber,myDateTime);
+                }
+                if(_bodycode==5)
+                {
+                    body=strFmt("Le fichier %1, Votre commandes ont eté traités avec succes Fichier traité à: %2",_file,myDateTime);
+                }
+
+                sUserId = curUserId();
+             
+                //Getting Email id from User Options --> Account --> Email Provider --> Email id
+                userEmail = SysUserInfo::find(sUserId, false).Email;
+
+                var builder = new SysMailerMessageBuilder();
+
+                builder.setFrom("yosrahaddad99@gmail.com");
+                builder.addTo("yosra.haddad@enicar.ucar");
+                builder.setSubject(subject);
+                builder.setBody(body);
+
+                //For attachment
+                System.IO.Stream   _stream =tEmail.addfileattachment(_file);
+                builder.addAttachment(_stream,_file);
+         
+                var message = builder.getMessage();
+
+                SysMailerFactory::getNonInteractiveMailer().sendNonInteractive(message);
+
+       
+            }
+
+            catch (Exception::Error)
+            {
+
+                throw error("@SYS33567");
+
+            }
+        }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>addfileattachment</Name>
+				<Source><![CDATA[
+        public System.IO.Stream addfileattachment(str _file)
+        {
+
+            System.IO.StreamReader          reader;
+            System.IO.Stream                requestStream;
+            System.Byte[]                   bytes;
+            System.IO.Stream                readStream;
+            System.Text.Encoding            utf8;
+       
+            str                         retVal;
+            str _fileNamePath =_file;
+
+            // Read file
+            _fileNamePath = strReplace(_fileNamePath,"\\","/");
+            reader = new System.IO.StreamReader(_fileNamePath);
+            utf8 = System.Text.Encoding::get_UTF8();
+            bytes = utf8.GetBytes( reader.ReadToEnd() );
+            reader.Close();
+
+            requestStream =(new System.IO.MemoryStream(bytes) );
+
+            return requestStream ;
+
+        }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIDialogLookupUIBuilder</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// UIBuilder DialogLookup
+/// </summary>
+class EDIDialogLookupUIBuilder extends SysOperationAutomaticUIBuilder
+{
+//    public DialogField parmhostDialogField;
+//    public DialogField parmUserDialogField;
+//    public DialogField parmPortDialogField;
+
+
+
+//    public void postBuild()
+//    {
+//        super();
+
+//        //get reference to host dialog field
+//        parmhostDialogField = this.bindInfo().getDialogField(this.dataContractObject(), methodStr(EDIImportXMLContract, parmHost));
+
+//        //override the lookup method 
+//        parmhostDialogField.registerOverrideMethod(methodStr(FormStringControl,lookup),
+//            methodstr(EDIDialogLookupUIBuilder, lookupHost),this);
+
+//        //get reference to user dialog field
+//        parmUserDialogField=this.bindInfo().getDialogField(this.dataContractObject(), methodStr(EDIImportXMLContract, parmUser));
+
+
+//        //override the lookup method
+//        parmUserDialogField.registerOverrideMethod(methodStr(FormStringControl,lookup),
+//            methodstr(EDIDialogLookupUIBuilder, lookupUser),this);
+
+//        //get reference to user dialog field
+//        parmPortDialogField=this.bindInfo().getDialogField(this.dataContractObject(), methodStr(EDIImportXMLContract, parmPort));
+
+//        //override the lookup method
+//        parmPortDialogField.registerOverrideMethod(methodStr(FormStringControl,lookup),
+//            methodstr(EDIDialogLookupUIBuilder, lookupPort),this);
+//    }
+
+//    private void lookupHost(FormStringControl _formStringControl)
+//    {
+//        Query query = new Query();
+//        QueryBuildDataSource qbds;
+//        SysTableLookup sysTableLookup;
+//        sysTableLookup = SysTableLookup::newParameters(tableNum(EDIServeurSFTP), _formStringControl);
+//        qbds = query.addDataSource(tableNum(EDIServeurSFTP));
+//        qbds.addGroupByField(fieldnum(EDIServeurSFTP, Host));
+//        sysTableLookup.addLookupfield(fieldNum(EDIServeurSFTP, Host), true);
+//        sysTableLookup.performFormLookup();
+
+//    }
+
+//    private void lookupUser(FormStringControl _formStringControl)
+//    {
+//        Query query = new Query();
+//        QueryBuildDataSource qbds;
+//        SysTableLookup sysTableLookup;
+
+//        sysTableLookup = SysTableLookup::newParameters(tableNum(EDIServeurSFTP), _formStringControl);
+
+//        qbds = query.addDataSource(tableNum(EDIServeurSFTP));
+//        qbds.addRange(fieldnum(EDIServeurSFTP, Host)).value(parmhostDialogField.value());
+//        qbds.addGroupByField(fieldnum(EDIServeurSFTP, Host));
+//        qbds.addGroupByField(fieldnum(EDIServeurSFTP, User));
+
+//        sysTableLookup.addLookupfield(fieldNum(EDIServeurSFTP, Host), false);
+//        sysTableLookup.addLookupfield(fieldNum(EDIServeurSFTP, User), true);
+//        sysTableLookup.parmQuery(query);
+//        sysTableLookup.performFormLookup();
+
+//    }
+
+//    private void lookupPort(FormIntControl _formIntControl)
+//    {
+//        Query query = new Query();
+//        QueryBuildDataSource qbds;
+//        SysTableLookup sysTableLookup;
+
+//        sysTableLookup = SysTableLookup::newParameters(tableNum(EDIServeurSFTP), _formIntControl);
+
+//        qbds = query.addDataSource(tableNum(EDIServeurSFTP));
+//        qbds.addRange(fieldnum(EDIServeurSFTP, Host)).value(parmhostDialogField.value());
+//        qbds.addRange(fieldnum(EDIServeurSFTP, User)).value(parmUserDialogField.value());
+
+//        sysTableLookup.addLookupfield(fieldNum(EDIServeurSFTP, Host), false);
+//        sysTableLookup.addLookupfield(fieldNum(EDIServeurSFTP, User), false);
+//        sysTableLookup.addLookupfield(fieldNum(EDIServeurSFTP, Port), true);
+//        sysTableLookup.parmQuery(query);
+//        sysTableLookup.performFormLookup();
+//    }
+
+}
+]]></Declaration>
+		<Methods />
+	</SourceCode>
+</AxClass>

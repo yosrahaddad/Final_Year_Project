@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIParseEngelvartXMLfile</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Parsing XML file
+/// </summary>
+class EDIParseEngelvartXMLfile
+{
+    XmlDocument xmlDocument;
+    XmlNode xmlItem;
+    XmlNodeList xmlItemList;
+    XMLParseError xmlError;
+    XmlElement itemElement;
+    XmlNodeList itemElementsList;
+    XmlElement nodeScript;
+    XmlNodeList nodeScriptList;
+    str workordernumber;
+    str itemNumber;
+    str customerAccount;
+    str customerName;
+    real orderedqty;
+    real priority;
+    public date startDate;
+    public date endDate;
+    int status;
+    str description;
+    SalesTable salesTable;
+    SalesLine salesLine;
+
+    
+    
+   
+
+    
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>ParseXMLFile</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// LoadXMLFile
+    /// </summary>
+    /// <param name = "_file">_filexml</param>
+    public int ParseXMLFile(str _filexml)
+    {
+        int errors=0;
+        //client Email
+        EDIGetCustomerEmail demConn =new EDIGetCustomerEmail(); 
+        EDIImportXMLtable importXMLtable;
+        select * from importXMLtable;
+        str filePath =importXMLtable.PathFileRecu;
+        str destinationErrorDirectory=importXMLtable.PathFileErroe;
+        str destinationTreatedDirectory= importXMLtable.PathFileTraited;
+          
+        //EDIParseEngelvartXMLfile demConn = new EDIParseEngelvartXMLfile();
+       
+        //first we need to get the clientaccount value from EDIImportXMLtable
+        //EDIImportXMLtable cust;
+        //CustTable custTable;
+        //select cust ;
+        //customerAccount=cust.ClientAccount;
+        //str adresseElectronique=demConn.GetCustomerEmailByAccount(customerAccount);
+
+        ////instance testMail to send mail
+        //EDIMailNotification tEmail= new EDIMailNotification();
+
+
+
+
+
+
+        //load xml file
+        xmlDocument=new XmlDocument();
+        xmlDocument.load(_filexml);
+        xmlError=xmlDocument.parseError();
+        if(xmlError && xmlError.errorCode())
+        {
+            throw error("@EDIImportXMl:FileLoad", xmlError.reason());
+        }
+        else
+        {
+            ////check extension
+            //FileName  FileName, FileExtension,FilePath;
+            //str fileNameString;
+            //boolean     ok = true;
+
+            //[FilePath,FileName, fileExtension] = fileNameSplit(_filexml);
+            //filenamestring= FileName+FileExtension;
+
+            //if(filenamestring!='ENGELVART.xml')
+            //{
+            //    ok = false;
+            //    Error(strFmt("@ECL:FileFormatError", FileName));
+            //}
+
+
+            //info("@EDIImportXMl:FileLoaded");
+
+            XmlNodeList workorders = xmlDocument.selectNodes('/Workorders/Worksorder');
+            xmlItem=workorders.nextNode();
+
+            ////check ENGELVART format
+            //EDIVerifyDuplicationCmd dup=new EDIVerifyDuplicationCmd();
+
+            //boolean Valid= dup.testDuplicateNumber(workorders);
+
+            //if (Valid==false)
+            //{
+                //    // Display an error message if the xml file not an engelvart format
+                //    error ("@EDIImportXMl:NotEngelvartFormat");
+                //    //send mmail to client
+                //    //tEmail.sendCustomMail(_filexml,adresseElectronique,1,1);
+                //    tEmail.sendCustomMail(_filexml,"yosrahaddad99@gmail.com",1,1);
+                //    return false;
+                //}
+            //else
+            //{
+            
+                for(int i=0;i<workorders.length();i++)
+                {
+                    xmlItem=workorders.item(i);
+  
+                    //workordernumber= xmlItem.selectSingleNode('Worksordernumber').innerText();
+                    itemNumber=xmlItem.selectSingleNode('Item').innerText();
+                    orderedqty=str2num(xmlItem.selectSingleNode('Qty').innerText());
+                    priority= str2num(xmlItem.selectSingleNode('Priority').innerText());
+                    //startDate=str2date(xmlItem.selectSingleNode('Startdate').innerText(), 123);
+                    endDate=str2date(xmlItem.selectSingleNode('Enddate').innerText(), 123);
+                    status=8;
+                    description= xmlItem.selectSingleNode('StatusDescription').innerText();
+                    customerAccount= xmlItem.selectSingleNode('Customer').innerText();
+                    workordernumber = NumberSeq::newGetNum(SalesParameters::numRefSalesId()).num();
+                //1-verifier que le client est enregistré dans le système
+                    if(CustTable::exist(customerAccount))
+                    {
+                        //instance testMail to send mail
+                        str adresseElectronique=demConn.GetCustomerEmailByAccount(customerAccount);
+                        EDIMailNotification tEmail= new EDIMailNotification();
+
+                        //2-check ENGELVART format
+                        EDIVerifyDuplicationCmd dup=new EDIVerifyDuplicationCmd();
+                        boolean Valid= dup.testDuplicateNumber(workorders);
+                        if (Valid==false)
+                        {
+                            // Display an error message if the xml file not an engelvart format
+                            error ("@EDIImportXMl:NotEngelvartFormat");
+                            //send mmail to client
+                            tEmail.sendCustomMail(_filexml,"yosrahaddad99@gmail.com",1,1,workordernumber);
+                            //return false;
+                            errors=errors+1;
+                        }
+                        else
+                        {
+
+                            ///3-Match the internal and the external itemNumber
+                            EDIExtItemNumberMatch ExtItemNumberMatch=new EDIExtItemNumberMatch();
+                            boolean match= ExtItemNumberMatch.Match(itemNumber, customerAccount);
+                            str itemID=ExtItemNumberMatch.itemid;
+                            if(match==true )
+                            {
+                                /// Create the client salesTable
+                                salesTable.clear();
+                                salesTable.initValue();
+                                salesTable.SalesType = SalesType::Sales;
+                                salesTable.SalesId=workordernumber;
+                                salesTable.CustAccount = customerAccount;
+                                salesTable.initFromCustTable();
+                                salesTable.ReceiptDateRequested=endDate;
+                                salesTable.SalesStatus=SalesStatus::Backorder;
+                                ttsBegin;
+                                salesTable.insert();
+                                ttsCommit;
+                               
+ 
+                            /// Create the client order lines
+                            salesLine.clear();
+                            salesLine.initValue();
+                            salesLine.SalesId =salesTable.SalesId;
+                            salesLine.ItemId=itemID;
+                            salesLine.initFromInventTable(InventTable::find(salesLine.ItemId));     
+                            salesLine.SalesQty =  orderedqty;
+                            salesLine.PlanningPriority=priority;
+                            //salesLine.SalesType=SalesType::Sales;
+                            //salesLine.SalesStatus=SalesStatus::none;
+                            ttsBegin;
+                            salesLine.insert();
+                            ttsCommit;
+                            info(strFmt("La commande %1 est insérée",workordernumber));
+                            //send success mail to the client
+                            // tEmail.sendCustomMail(_filexml,adresseElectronique,4,2);
+                            tEmail.sendCustomMail(_filexml, "yosrahaddad99@gmail.com",5,2,workordernumber);
+
+
+                            ///check lead time
+                            EDISalesLeadTimes LeadTime=new EDISalesLeadTimes();
+                            LeadTime.SalesLeadTime(endDate ,_filexml , workordernumber );
+
+                            //Inventory Reservation
+                            InventDim inventdim=salesLine.inventDim();
+                            str lotId=salesLine.InventTransId; 
+                            EDIRetrieveSalesOrderData RetrieveOrder=new EDIRetrieveSalesOrderData();
+                            RetrieveOrder.Reserve(orderedqty,inventdim,itemID,lotId,workordernumber);
+                       
+                           }
+                           else
+                           {
+                               /// Item does not exist in InventTable
+                               //error(strFmt("Item %1 n'exite pas", itemID));
+                               //tell the client by mail
+                               // tEmail.sendCustomMail(_filexml,adresseElectronique,2,1);
+                            tEmail.sendCustomMail(_filexml, "yosrahaddad99@gmail.com",2,1,workordernumber);
+                               //return false;
+                            errors=errors+1;
+
+                           }
+                           
+                       
+                       }
+                  
+                     }
+                    else
+                    {
+                        Error(strFmt("Le client %1 n'existe pas", customerAccount));
+                        //return false;
+                         errors=errors+1;
+                    }
+       
+
+               }
+             //return true;
+         }
+         //return true;
+        return errors;
+        
+     }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

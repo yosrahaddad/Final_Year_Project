@@ -1,0 +1,3 @@
+<ExtensionClasses>
+  <ExtensionClass ExtensionClassName="CustPackingSlipJour_EDI_Extension" ExtensionTargetName="CustPackingSlipJour" ExtensionTargetTypeId="TableTypeId" ExtensionNestedTargetName="" />
+</ExtensionClasses>

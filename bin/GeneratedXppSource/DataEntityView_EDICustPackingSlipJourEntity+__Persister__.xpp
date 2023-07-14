@@ -1,0 +1,766 @@
+Private class __Persister__
+extends SysDataEntityPersister
+{
+    // Data source ID macros
+    #define.EDICustPackingSlipJour_ID(1)
+    
+    // Data source buffers
+    EDICustPackingSlipJour m_EDICustPackingSlipJour;
+    
+    protected void mapEntityToDataSources(DataEntityRuntimeContext _entityCtx)
+    {
+        this.validateFieldFailed = false;
+        this.mapEntityToDataSource(_entityCtx, _entityCtx.getRuntimeContextByName('EDICustPackingSlipJour'));
+        this.mapEntityToDataSourcesExtensions(_entityCtx);
+        if(this.validateFieldFailed)
+        {
+            throw Exception::ViewDataSourceValidation;
+        }
+    }
+    protected boolean saveDataSources(DataEntityRuntimeContext _entityCtx)
+    {
+        boolean rtrn = true;
+        DataEntityDataSourceRuntimeContext _dataSourceCtx = null;
+        // save data sources in topological order.
+        {
+            // handle datasources which are part of extensions and need to be saved before [EDICustPackingSlipJour]
+            if(!this.preSaveDataSource(_entityCtx, 'EDICustPackingSlipJour'))
+            {
+                return false;
+            }
+            _dataSourceCtx = _entityCtx.getRuntimeContextByName('EDICustPackingSlipJour');
+            // propagates foreign key values from referenced data sources which are part of extensions.
+            this.foreignKeyPropagationExtensions(_entityCtx, _dataSourceCtx);
+            // inserts/updates data source [EDICustPackingSlipJour].
+            if(!this.saveDataSource(_entityCtx, _dataSourceCtx))
+            {
+                // returns from here if the root data source fails to be saved.
+                return false;
+            }
+            this.postSaveDataSource();
+        }
+        // handle datasources which are part of extensions and need to be saved in last 
+        this.preSaveDataSource(_entityCtx, '');
+        return rtrn;
+    }
+    protected boolean deleteDataSources(DataEntityRuntimeContext _entityCtx)
+    {
+        boolean rtrn = true;
+        DataEntityDataSourceRuntimeContext _dataSourceCtx = null;
+        // delete data sources in reverse topological order.
+        {
+            // handle datasources which are part of extensions and need to be saved before [EDICustPackingSlipJour]
+            if(!this.preSaveDataSource(_entityCtx, 'EDICustPackingSlipJour'))
+            {
+                return false;
+            }
+            _dataSourceCtx = _entityCtx.getRuntimeContextByName('EDICustPackingSlipJour');
+            // deletes data source [EDICustPackingSlipJour].
+            if(!this.saveDataSource(_entityCtx, _dataSourceCtx))
+            {
+                // returns from here if the root data source fails to be saved.
+                return false;
+            }
+            this.postSaveDataSource();
+        }
+        // handle datasources which are part of extensions and need to be saved in last 
+        this.preSaveDataSource(_entityCtx, '');
+        return rtrn;
+    }
+    private void mapToDataSource_DS1(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx, EDICustPackingSlipJour _eDICustPackingSlipJour, EDICustPackingSlipJourEntity _eDICustPackingSlipJourEntity)
+    {
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, OrderAccount), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, OrderAccount), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BillOfLadingId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BillOfLadingId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLAddress), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLAddress), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLCarrierName), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLCarrierName), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLFreightedBy), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLFreightedBy), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLPackageAppearance), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLPackageAppearance), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ContactPersonId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ContactPersonId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, CustomerRef), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, CustomerRef), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DeliveryDate), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryDate), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DeliveryName), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryName), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DeliveryPostalAddress), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryPostalAddress), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DlvMode), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvMode), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DlvReason), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvReason), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DlvTerm), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvTerm), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DocumentDate), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DocumentDate), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ExportReason), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ExportReason), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, FreightSlipNum), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, FreightSlipNum), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, FreightSlipType), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, FreightSlipType), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InterCompanyCompanyId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyCompanyId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InterCompanyPosted), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyPosted), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InterCompanyPurchId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyPurchId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InternalPackingSlipId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InternalPackingSlipId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, IntrastatDispatch), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, IntrastatDispatch), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, IntrastatFulfillmentDate_HU), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, IntrastatFulfillmentDate_HU), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, inventLocationId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, inventLocationId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InventProfileType_RU), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InventProfileType_RU), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoiceAccount), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoiceAccount), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoiceIssueDueDate_W), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoiceIssueDueDate_W), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoicePostalAddress), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoicePostalAddress), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoicingName), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoicingName), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, LanguageId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LanguageId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, LedgerVoucher), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LedgerVoucher), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ListCode), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ListCode), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, NumberSequenceGroup), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, NumberSequenceGroup), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, OffSessionId_RU), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, OffSessionId_RU), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PackedExtensions), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackedExtensions), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PackingSlipId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackingSlipId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PackingSlipNumberingCode_LT), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackingSlipNumberingCode_LT), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ParmId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ParmId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PdsCWQty), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PdsCWQty), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PrintBlankDate_LT), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PrintBlankDate_LT), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Printed), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Printed), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PrintMgmtSiteId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PrintMgmtSiteId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PurchaseOrder), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PurchaseOrder), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Qty), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Qty), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ReasonTableRef_BR), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReasonTableRef_BR), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, RefNum), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, RefNum), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ReturnItemNum), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReturnItemNum), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ReturnPackingSlipId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReturnPackingSlipId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, SalesId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SalesId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, SalesType), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SalesType), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierAccount), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierAccount), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierBlindShipment), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierBlindShipment), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierDeliveryContact), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierDeliveryContact), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierEmail), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierEmail), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierId), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierPhone), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierPhone), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, SourceDocumentHeader), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SourceDocumentHeader), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryContractor), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryContractor), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryLoader), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryLoader), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryOwner), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryOwner), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDocument), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDocument), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Volume), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Volume), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Weight), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Weight), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, WorkerSalesTaker), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, WorkerSalesTaker), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BankLCExportLine), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BankLCExportLine), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PostedState), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PostedState), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TaxID), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TaxID), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PartyTaxID), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PartyTaxID), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, LinNum), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LinNum), 1);
+        
+        this.mapToDataSourceExtensions(_dataSourceCtx, _eDICustPackingSlipJour, _eDICustPackingSlipJourEntity);
+        _eDICustPackingSlipJour.trackFieldExternallySet(false);
+    }
+    protected void doMapEntityToDataSource(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx)
+    {
+        switch(_dataSourceCtx.id())
+        {
+            case #EDICustPackingSlipJour_ID:
+                this.mapToDataSource_DS1(_entityCtx, _dataSourceCtx, _dataSourceCtx.getBuffer(), _entityCtx.getEntityRecord());
+                break;
+            default :
+                this.doMapEntityToDataSourceExtensions(_entityCtx, _dataSourceCtx);
+                break;
+        }
+    }
+    private void mapFromDataSource_DS1(DataEntityDataSourceRuntimeContext _dataSourceCtx, EDICustPackingSlipJour _eDICustPackingSlipJour, EDICustPackingSlipJourEntity _eDICustPackingSlipJourEntity)
+    {
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, OrderAccount), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, OrderAccount), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BillOfLadingId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BillOfLadingId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLAddress), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLAddress), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLCarrierName), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLCarrierName), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLFreightedBy), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLFreightedBy), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLPackageAppearance), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLPackageAppearance), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ContactPersonId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ContactPersonId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, CustomerRef), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, CustomerRef), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryDate), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DeliveryDate), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryName), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DeliveryName), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryPostalAddress), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DeliveryPostalAddress), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvMode), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DlvMode), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvReason), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DlvReason), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvTerm), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DlvTerm), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DocumentDate), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DocumentDate), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ExportReason), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ExportReason), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, FreightSlipNum), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, FreightSlipNum), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, FreightSlipType), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, FreightSlipType), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyCompanyId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InterCompanyCompanyId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyPosted), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InterCompanyPosted), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyPurchId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InterCompanyPurchId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InternalPackingSlipId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InternalPackingSlipId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, IntrastatDispatch), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, IntrastatDispatch), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, IntrastatFulfillmentDate_HU), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, IntrastatFulfillmentDate_HU), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, inventLocationId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, inventLocationId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InventProfileType_RU), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InventProfileType_RU), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoiceAccount), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoiceAccount), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoiceIssueDueDate_W), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoiceIssueDueDate_W), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoicePostalAddress), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoicePostalAddress), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoicingName), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoicingName), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LanguageId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, LanguageId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LedgerVoucher), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, LedgerVoucher), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ListCode), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ListCode), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, NumberSequenceGroup), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, NumberSequenceGroup), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, OffSessionId_RU), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, OffSessionId_RU), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackedExtensions), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PackedExtensions), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackingSlipId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PackingSlipId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackingSlipNumberingCode_LT), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PackingSlipNumberingCode_LT), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ParmId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ParmId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PdsCWQty), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PdsCWQty), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PrintBlankDate_LT), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PrintBlankDate_LT), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Printed), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Printed), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PrintMgmtSiteId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PrintMgmtSiteId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PurchaseOrder), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PurchaseOrder), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Qty), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Qty), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReasonTableRef_BR), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ReasonTableRef_BR), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, RefNum), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, RefNum), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReturnItemNum), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ReturnItemNum), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReturnPackingSlipId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ReturnPackingSlipId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SalesId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, SalesId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SalesType), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, SalesType), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierAccount), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierAccount), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierBlindShipment), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierBlindShipment), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierDeliveryContact), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierDeliveryContact), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierEmail), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierEmail), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierId), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierId), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierPhone), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierPhone), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SourceDocumentHeader), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, SourceDocumentHeader), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryContractor), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryContractor), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryLoader), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryLoader), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryOwner), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryOwner), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDocument), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDocument), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Volume), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Volume), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Weight), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Weight), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, WorkerSalesTaker), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, WorkerSalesTaker), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BankLCExportLine), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BankLCExportLine), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PostedState), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PostedState), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TaxID), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TaxID), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PartyTaxID), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PartyTaxID), false);
+        this.mapDataSourceFieldToEntityField(_eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LinNum), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, LinNum), false);
+        this.mapFromDataSourceExtensions(_dataSourceCtx, _eDICustPackingSlipJour, _eDICustPackingSlipJourEntity);
+        // map system fields (e.g. recid and recversion) from data source buffer to view record.
+        _eDICustPackingSlipJourEntity.fromViewDataSource(_dataSourceCtx.id(), _eDICustPackingSlipJour);
+    }
+    protected void doMapDataSourceToEntity(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx)
+    {
+        switch(_dataSourceCtx.id())
+        {
+            case #EDICustPackingSlipJour_ID:
+                this.mapFromDataSource_DS1(_dataSourceCtx, _dataSourceCtx.getBuffer(), _entityCtx.getEntityRecord());
+                break;
+            default :
+                this.doMapDataSourceToEntityExtensions(_entityCtx, _dataSourceCtx);
+                break;
+        }
+    }
+    protected Common doFindDataSource(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx)
+    {
+        Common rtrn = null;
+        switch(_dataSourceCtx.id())
+        {
+            case #EDICustPackingSlipJour_ID:
+                rtrn = this.LookForUniqueKeyMatch_DS1(_entityCtx.getEntityRecord(), _dataSourceCtx.getBuffer());
+                break;
+            default :
+                rtrn = this.doFindDataSourceExtensions(_entityCtx, _dataSourceCtx);
+                break;
+        }
+        return rtrn;
+    }
+    protected boolean isAnyMappedDataSourceFieldSet_DS1(EDICustPackingSlipJourEntity _eDICustPackingSlipJourEntity, str disabledConfigKey = null)
+    {
+        boolean rtrn = false;
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, OrderAccount)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, BillOfLadingId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, BOLAddress)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, BOLCarrierName)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, BOLFreightedBy)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, BOLPackageAppearance)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ContactPersonId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, CustomerRef)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, DeliveryDate)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, DeliveryName)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, DeliveryPostalAddress)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, DlvMode)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, DlvReason)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, DlvTerm)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, DocumentDate)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ExportReason)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, FreightSlipNum)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, FreightSlipType)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, InterCompanyCompanyId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, InterCompanyPosted)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, InterCompanyPurchId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, InternalPackingSlipId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, IntrastatDispatch)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, IntrastatFulfillmentDate_HU)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, inventLocationId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, InventProfileType_RU)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, InvoiceAccount)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, InvoiceIssueDueDate_W)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, InvoicePostalAddress)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, InvoicingName)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, LanguageId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, LedgerVoucher)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ListCode)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, NumberSequenceGroup)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, OffSessionId_RU)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, PackedExtensions)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, PackingSlipId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, PackingSlipNumberingCode_LT)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ParmId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, PdsCWQty)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, PrintBlankDate_LT)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, Printed)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, PrintMgmtSiteId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, PurchaseOrder)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, Qty)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ReasonTableRef_BR)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, RefNum)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ReturnItemNum)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ReturnPackingSlipId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, SalesId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, SalesType)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ShipCarrierAccount)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ShipCarrierBlindShipment)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ShipCarrierDeliveryContact)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ShipCarrierEmail)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ShipCarrierId)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, ShipCarrierPhone)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, SourceDocumentHeader)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryContractor)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryLoader)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryOwner)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, TransportationDocument)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, Volume)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, Weight)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, WorkerSalesTaker)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, BankLCExportLine)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, PostedState)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, TaxID)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, PartyTaxID)))
+        {
+            return true;
+        }
+        if(_eDICustPackingSlipJourEntity.isFieldSet(fieldnum(EDICustPackingSlipJourEntity, LinNum)))
+        {
+            return true;
+        }
+        rtrn = this.isAnyMappedDataSourceExtensionFieldSet(_eDICustPackingSlipJourEntity, 'EDICustPackingSlipJour', disabledConfigKey);
+        return rtrn;
+    }
+    protected boolean isAnyMappedDataSourceFieldSet(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx)
+    {
+        boolean rtrn = false;
+        switch(_dataSourceCtx.id())
+        {
+            case #EDICustPackingSlipJour_ID:
+                rtrn = this.isAnyMappedDataSourceFieldSet_DS1(_entityCtx.getEntityRecord());
+                break;
+            default :
+                rtrn = this.isAnyMappedDataSourceFieldSet_DSExtensions(_entityCtx, _dataSourceCtx);
+                break;
+        }
+        return rtrn;
+    }
+    private boolean validateDataSource_DS1(DataEntityRuntimeContext _entityCtx, EDICustPackingSlipJourEntity _eDICustPackingSlipJourEntity, DataEntityDataSourceRuntimeContext _dataSourceCtx, EDICustPackingSlipJour _eDICustPackingSlipJour)
+    {
+        boolean rtrn = true;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, OrderAccount), 'EDICustPackingSlipJourEntity.OrderAccount', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, OrderAccount), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BillOfLadingId), 'EDICustPackingSlipJourEntity.BillOfLadingId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BillOfLadingId), false/*disallowEditOnCreate*/, true/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLAddress), 'EDICustPackingSlipJourEntity.BOLAddress', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLAddress), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLCarrierName), 'EDICustPackingSlipJourEntity.BOLCarrierName', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLCarrierName), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLFreightedBy), 'EDICustPackingSlipJourEntity.BOLFreightedBy', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLFreightedBy), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BOLPackageAppearance), 'EDICustPackingSlipJourEntity.BOLPackageAppearance', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLPackageAppearance), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['LT'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ContactPersonId), 'EDICustPackingSlipJourEntity.ContactPersonId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ContactPersonId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, CustomerRef), 'EDICustPackingSlipJourEntity.CustomerRef', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, CustomerRef), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DeliveryDate), 'EDICustPackingSlipJourEntity.DeliveryDate', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryDate), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DeliveryName), 'EDICustPackingSlipJourEntity.DeliveryName', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryName), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DeliveryPostalAddress), 'EDICustPackingSlipJourEntity.DeliveryPostalAddress', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryPostalAddress), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DlvMode), 'EDICustPackingSlipJourEntity.DlvMode', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvMode), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DlvReason), 'EDICustPackingSlipJourEntity.DlvReason', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvReason), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DlvTerm), 'EDICustPackingSlipJourEntity.DlvTerm', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvTerm), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, DocumentDate), 'EDICustPackingSlipJourEntity.DocumentDate', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DocumentDate), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ExportReason), 'EDICustPackingSlipJourEntity.ExportReason', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ExportReason), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, FreightSlipNum), 'EDICustPackingSlipJourEntity.FreightSlipNum', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, FreightSlipNum), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, FreightSlipType), 'EDICustPackingSlipJourEntity.FreightSlipType', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, FreightSlipType), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InterCompanyCompanyId), 'EDICustPackingSlipJourEntity.InterCompanyCompanyId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyCompanyId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InterCompanyPosted), 'EDICustPackingSlipJourEntity.InterCompanyPosted', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyPosted), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InterCompanyPurchId), 'EDICustPackingSlipJourEntity.InterCompanyPurchId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyPurchId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InternalPackingSlipId), 'EDICustPackingSlipJourEntity.InternalPackingSlipId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InternalPackingSlipId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['AT','AU','BE','BG','CA','CH','CY','CZ','DE','DK','EE','GR','ES','FI','FR','GB','HR','HU','IE','IS','IT','LI','LT','LU','LV','MT','MX','NL','NO','NZ','PL','PT','RO','SE','SI','SK','US'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, IntrastatDispatch), 'EDICustPackingSlipJourEntity.IntrastatDispatch', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, IntrastatDispatch), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['HU'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, IntrastatFulfillmentDate_HU), 'EDICustPackingSlipJourEntity.IntrastatFulfillmentDate_HU', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, IntrastatFulfillmentDate_HU), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, inventLocationId), 'EDICustPackingSlipJourEntity.inventLocationId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, inventLocationId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['RU'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InventProfileType_RU), 'EDICustPackingSlipJourEntity.InventProfileType_RU', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InventProfileType_RU), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoiceAccount), 'EDICustPackingSlipJourEntity.InvoiceAccount', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoiceAccount), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoiceIssueDueDate_W), 'EDICustPackingSlipJourEntity.InvoiceIssueDueDate_W', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoiceIssueDueDate_W), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoicePostalAddress), 'EDICustPackingSlipJourEntity.InvoicePostalAddress', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoicePostalAddress), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, InvoicingName), 'EDICustPackingSlipJourEntity.InvoicingName', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoicingName), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, LanguageId), 'EDICustPackingSlipJourEntity.LanguageId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LanguageId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, LedgerVoucher), 'EDICustPackingSlipJourEntity.LedgerVoucher', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LedgerVoucher), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['AT','BE','BG','CH','CY','CZ','DE','DK','EE','GR','ES','FI','FR','GB','HR','HU','IE','IS','IT','LI','LT','LU','LV','MT','NL','NO','PL','PT','RO','SE','SI','SK'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ListCode), 'EDICustPackingSlipJourEntity.ListCode', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ListCode), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, NumberSequenceGroup), 'EDICustPackingSlipJourEntity.NumberSequenceGroup', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, NumberSequenceGroup), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['RU'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, OffSessionId_RU), 'EDICustPackingSlipJourEntity.OffSessionId_RU', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, OffSessionId_RU), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PackedExtensions), 'EDICustPackingSlipJourEntity.PackedExtensions', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackedExtensions), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PackingSlipId), 'EDICustPackingSlipJourEntity.PackingSlipId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackingSlipId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['LT','LV'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PackingSlipNumberingCode_LT), 'EDICustPackingSlipJourEntity.PackingSlipNumberingCode_LT', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackingSlipNumberingCode_LT), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ParmId), 'EDICustPackingSlipJourEntity.ParmId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ParmId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PdsCWQty), 'EDICustPackingSlipJourEntity.PdsCWQty', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PdsCWQty), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['LT','LV'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PrintBlankDate_LT), 'EDICustPackingSlipJourEntity.PrintBlankDate_LT', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PrintBlankDate_LT), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Printed), 'EDICustPackingSlipJourEntity.Printed', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Printed), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PrintMgmtSiteId), 'EDICustPackingSlipJourEntity.PrintMgmtSiteId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PrintMgmtSiteId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PurchaseOrder), 'EDICustPackingSlipJourEntity.PurchaseOrder', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PurchaseOrder), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Qty), 'EDICustPackingSlipJourEntity.Qty', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Qty), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['PL','HU','CZ','LT','LV','EE','RU','BR','MY','DK','GB','IE','NL','DE','FR','IS'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ReasonTableRef_BR), 'EDICustPackingSlipJourEntity.ReasonTableRef_BR', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReasonTableRef_BR), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, RefNum), 'EDICustPackingSlipJourEntity.RefNum', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, RefNum), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ReturnItemNum), 'EDICustPackingSlipJourEntity.ReturnItemNum', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReturnItemNum), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ReturnPackingSlipId), 'EDICustPackingSlipJourEntity.ReturnPackingSlipId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReturnPackingSlipId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, SalesId), 'EDICustPackingSlipJourEntity.SalesId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SalesId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, SalesType), 'EDICustPackingSlipJourEntity.SalesType', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SalesType), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierAccount), 'EDICustPackingSlipJourEntity.ShipCarrierAccount', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierAccount), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierBlindShipment), 'EDICustPackingSlipJourEntity.ShipCarrierBlindShipment', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierBlindShipment), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierDeliveryContact), 'EDICustPackingSlipJourEntity.ShipCarrierDeliveryContact', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierDeliveryContact), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierEmail), 'EDICustPackingSlipJourEntity.ShipCarrierEmail', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierEmail), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierId), 'EDICustPackingSlipJourEntity.ShipCarrierId', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierId), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, ShipCarrierPhone), 'EDICustPackingSlipJourEntity.ShipCarrierPhone', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierPhone), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, SourceDocumentHeader), 'EDICustPackingSlipJourEntity.SourceDocumentHeader', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SourceDocumentHeader), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['IT'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryContractor), 'EDICustPackingSlipJourEntity.TransportationDeliveryContractor', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryContractor), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['IT'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryLoader), 'EDICustPackingSlipJourEntity.TransportationDeliveryLoader', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryLoader), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['IT'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDeliveryOwner), 'EDICustPackingSlipJourEntity.TransportationDeliveryOwner', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryOwner), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', ['AT','BE','BG','CY','CZ','DE','DK','EE','GR','ES','FI','FR','GB','HR','HU','IE','IT','LT','LU','LV','MT','MX','NL','PL','PT','RO','SE','SI','SK'], _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TransportationDocument), 'EDICustPackingSlipJourEntity.TransportationDocument', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDocument), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Volume), 'EDICustPackingSlipJourEntity.Volume', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Volume), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, Weight), 'EDICustPackingSlipJourEntity.Weight', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Weight), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, WorkerSalesTaker), 'EDICustPackingSlipJourEntity.WorkerSalesTaker', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, WorkerSalesTaker), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, BankLCExportLine), 'EDICustPackingSlipJourEntity.BankLCExportLine', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BankLCExportLine), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PostedState), 'EDICustPackingSlipJourEntity.PostedState', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PostedState), true/*disallowEditOnCreate*/, true/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, TaxID), 'EDICustPackingSlipJourEntity.TaxID', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TaxID), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, PartyTaxID), 'EDICustPackingSlipJourEntity.PartyTaxID', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PartyTaxID), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateMappedDataSourceField(_entityCtx, _dataSourceCtx, '', '', conNull(), _eDICustPackingSlipJourEntity, fieldnum(EDICustPackingSlipJourEntity, LinNum), 'EDICustPackingSlipJourEntity.LinNum', _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LinNum), false/*disallowEditOnCreate*/, false/*disallowEdit*/, true/*callValidateField*/, 1) ? rtrn : false;
+        rtrn = this.validateDataSourceExtensions(_entityCtx, _eDICustPackingSlipJourEntity, _dataSourceCtx, _eDICustPackingSlipJour) ? rtrn : false;
+        return rtrn;
+    }
+    protected boolean validateDataSource(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx)
+    {
+        boolean rtrn = true;
+        switch(_dataSourceCtx.id())
+        {
+            case #EDICustPackingSlipJour_ID:
+                rtrn = this.validateDataSource_DS1(_entityCtx,_entityCtx.getEntityRecord(),_dataSourceCtx,_dataSourceCtx.getBuffer());
+                break;
+            default :
+                rtrn = this.validateDataSourceExtensions_DSExtensions(_entityCtx, _dataSourceCtx);
+                break;
+        }
+        return rtrn;
+    }
+    private void mapToMatchingRecord_DS1(DataEntityDataSourceRuntimeContext _dataSourceCtx, EDICustPackingSlipJour _eDICustPackingSlipJour, EDICustPackingSlipJour _matchingRecord)
+    {
+        // map data changes in bound fields.
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, OrderAccount), _matchingRecord, fieldnum(EDICustPackingSlipJour, OrderAccount), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BillOfLadingId), _matchingRecord, fieldnum(EDICustPackingSlipJour, BillOfLadingId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLAddress), _matchingRecord, fieldnum(EDICustPackingSlipJour, BOLAddress), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLCarrierName), _matchingRecord, fieldnum(EDICustPackingSlipJour, BOLCarrierName), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLFreightedBy), _matchingRecord, fieldnum(EDICustPackingSlipJour, BOLFreightedBy), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BOLPackageAppearance), _matchingRecord, fieldnum(EDICustPackingSlipJour, BOLPackageAppearance), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ContactPersonId), _matchingRecord, fieldnum(EDICustPackingSlipJour, ContactPersonId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, CustomerRef), _matchingRecord, fieldnum(EDICustPackingSlipJour, CustomerRef), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryDate), _matchingRecord, fieldnum(EDICustPackingSlipJour, DeliveryDate), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryName), _matchingRecord, fieldnum(EDICustPackingSlipJour, DeliveryName), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DeliveryPostalAddress), _matchingRecord, fieldnum(EDICustPackingSlipJour, DeliveryPostalAddress), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvMode), _matchingRecord, fieldnum(EDICustPackingSlipJour, DlvMode), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvReason), _matchingRecord, fieldnum(EDICustPackingSlipJour, DlvReason), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DlvTerm), _matchingRecord, fieldnum(EDICustPackingSlipJour, DlvTerm), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, DocumentDate), _matchingRecord, fieldnum(EDICustPackingSlipJour, DocumentDate), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ExportReason), _matchingRecord, fieldnum(EDICustPackingSlipJour, ExportReason), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, FreightSlipNum), _matchingRecord, fieldnum(EDICustPackingSlipJour, FreightSlipNum), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, FreightSlipType), _matchingRecord, fieldnum(EDICustPackingSlipJour, FreightSlipType), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyCompanyId), _matchingRecord, fieldnum(EDICustPackingSlipJour, InterCompanyCompanyId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyPosted), _matchingRecord, fieldnum(EDICustPackingSlipJour, InterCompanyPosted), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InterCompanyPurchId), _matchingRecord, fieldnum(EDICustPackingSlipJour, InterCompanyPurchId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InternalPackingSlipId), _matchingRecord, fieldnum(EDICustPackingSlipJour, InternalPackingSlipId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, IntrastatDispatch), _matchingRecord, fieldnum(EDICustPackingSlipJour, IntrastatDispatch), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, IntrastatFulfillmentDate_HU), _matchingRecord, fieldnum(EDICustPackingSlipJour, IntrastatFulfillmentDate_HU), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, inventLocationId), _matchingRecord, fieldnum(EDICustPackingSlipJour, inventLocationId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InventProfileType_RU), _matchingRecord, fieldnum(EDICustPackingSlipJour, InventProfileType_RU), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoiceAccount), _matchingRecord, fieldnum(EDICustPackingSlipJour, InvoiceAccount), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoiceIssueDueDate_W), _matchingRecord, fieldnum(EDICustPackingSlipJour, InvoiceIssueDueDate_W), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoicePostalAddress), _matchingRecord, fieldnum(EDICustPackingSlipJour, InvoicePostalAddress), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, InvoicingName), _matchingRecord, fieldnum(EDICustPackingSlipJour, InvoicingName), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LanguageId), _matchingRecord, fieldnum(EDICustPackingSlipJour, LanguageId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LedgerVoucher), _matchingRecord, fieldnum(EDICustPackingSlipJour, LedgerVoucher), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ListCode), _matchingRecord, fieldnum(EDICustPackingSlipJour, ListCode), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, NumberSequenceGroup), _matchingRecord, fieldnum(EDICustPackingSlipJour, NumberSequenceGroup), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, OffSessionId_RU), _matchingRecord, fieldnum(EDICustPackingSlipJour, OffSessionId_RU), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackedExtensions), _matchingRecord, fieldnum(EDICustPackingSlipJour, PackedExtensions), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackingSlipId), _matchingRecord, fieldnum(EDICustPackingSlipJour, PackingSlipId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PackingSlipNumberingCode_LT), _matchingRecord, fieldnum(EDICustPackingSlipJour, PackingSlipNumberingCode_LT), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ParmId), _matchingRecord, fieldnum(EDICustPackingSlipJour, ParmId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PdsCWQty), _matchingRecord, fieldnum(EDICustPackingSlipJour, PdsCWQty), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PrintBlankDate_LT), _matchingRecord, fieldnum(EDICustPackingSlipJour, PrintBlankDate_LT), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Printed), _matchingRecord, fieldnum(EDICustPackingSlipJour, Printed), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PrintMgmtSiteId), _matchingRecord, fieldnum(EDICustPackingSlipJour, PrintMgmtSiteId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PurchaseOrder), _matchingRecord, fieldnum(EDICustPackingSlipJour, PurchaseOrder), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Qty), _matchingRecord, fieldnum(EDICustPackingSlipJour, Qty), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReasonTableRef_BR), _matchingRecord, fieldnum(EDICustPackingSlipJour, ReasonTableRef_BR), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, RefNum), _matchingRecord, fieldnum(EDICustPackingSlipJour, RefNum), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReturnItemNum), _matchingRecord, fieldnum(EDICustPackingSlipJour, ReturnItemNum), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ReturnPackingSlipId), _matchingRecord, fieldnum(EDICustPackingSlipJour, ReturnPackingSlipId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SalesId), _matchingRecord, fieldnum(EDICustPackingSlipJour, SalesId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SalesType), _matchingRecord, fieldnum(EDICustPackingSlipJour, SalesType), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierAccount), _matchingRecord, fieldnum(EDICustPackingSlipJour, ShipCarrierAccount), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierBlindShipment), _matchingRecord, fieldnum(EDICustPackingSlipJour, ShipCarrierBlindShipment), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierDeliveryContact), _matchingRecord, fieldnum(EDICustPackingSlipJour, ShipCarrierDeliveryContact), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierEmail), _matchingRecord, fieldnum(EDICustPackingSlipJour, ShipCarrierEmail), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierId), _matchingRecord, fieldnum(EDICustPackingSlipJour, ShipCarrierId), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, ShipCarrierPhone), _matchingRecord, fieldnum(EDICustPackingSlipJour, ShipCarrierPhone), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, SourceDocumentHeader), _matchingRecord, fieldnum(EDICustPackingSlipJour, SourceDocumentHeader), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryContractor), _matchingRecord, fieldnum(EDICustPackingSlipJour, TransportationDeliveryContractor), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryLoader), _matchingRecord, fieldnum(EDICustPackingSlipJour, TransportationDeliveryLoader), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDeliveryOwner), _matchingRecord, fieldnum(EDICustPackingSlipJour, TransportationDeliveryOwner), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TransportationDocument), _matchingRecord, fieldnum(EDICustPackingSlipJour, TransportationDocument), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Volume), _matchingRecord, fieldnum(EDICustPackingSlipJour, Volume), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, Weight), _matchingRecord, fieldnum(EDICustPackingSlipJour, Weight), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, WorkerSalesTaker), _matchingRecord, fieldnum(EDICustPackingSlipJour, WorkerSalesTaker), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, BankLCExportLine), _matchingRecord, fieldnum(EDICustPackingSlipJour, BankLCExportLine), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PostedState), _matchingRecord, fieldnum(EDICustPackingSlipJour, PostedState), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, TaxID), _matchingRecord, fieldnum(EDICustPackingSlipJour, TaxID), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, PartyTaxID), _matchingRecord, fieldnum(EDICustPackingSlipJour, PartyTaxID), 1);
+        this.mapEntityFieldToDataSourceField(_dataSourceCtx.getDatabaseOperation(), _eDICustPackingSlipJour, fieldnum(EDICustPackingSlipJour, LinNum), _matchingRecord, fieldnum(EDICustPackingSlipJour, LinNum), 1);
+        this.mapToMatchingRecordExtensions(_dataSourceCtx, tablestr(EDICustPackingSlipJourEntity), _eDICustPackingSlipJour, _matchingRecord);
+    }
+    protected void mapDataSourceToMatchingRecord(DataEntityDataSourceRuntimeContext _dataSourceCtx, Common _matchingRecord)
+    {
+        switch(_dataSourceCtx.id())
+        {
+            case #EDICustPackingSlipJour_ID:
+                this.mapToMatchingRecord_DS1(_dataSourceCtx, _dataSourceCtx.getBuffer(), _matchingRecord);
+                break;
+            default :
+                this.mapDataSourceToMatchingRecordExtensions(_dataSourceCtx, _matchingRecord);
+                break;
+        }
+    }
+    protected void validateConfigurationKeys(DataEntityRuntimeContext _entityCtx)
+    {
+    }
+    protected void initializeDataSources(DataEntityRuntimeContext _entityCtx)
+    {
+        this.initializeDataSource(_entityCtx, 'EDICustPackingSlipJour', m_EDICustPackingSlipJour, this.getDataSourceId('EDICustPackingSlipJour'), this.getDataSourceRuntimeId('EDICustPackingSlipJour'), false/* optional */, false/* readonly */, false/* oneToMany */, false/* dateEffective */, false/* applyDateFilter */);
+        this.initializeDataSourcesExtensions(_entityCtx);
+    }
+    private EDICustPackingSlipJour LookForUniqueKeyMatch_DS1(EDICustPackingSlipJourEntity _eDICustPackingSlipJourEntity, EDICustPackingSlipJour _eDICustPackingSlipJour)
+    {
+        EDICustPackingSlipJour eDICustPackingSlipJour_ = null;
+        
+        select
+            forUpdate
+            firstOnly
+                eDICustPackingSlipJour_
+        where
+            eDICustPackingSlipJour_.LinNum == _eDICustPackingSlipJour.LinNum
+        ;
+        
+        if (eDICustPackingSlipJour_)
+        {
+            return eDICustPackingSlipJour_;
+        }
+        
+        return eDICustPackingSlipJour_;
+    }
+
+}
+

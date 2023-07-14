@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIExtItemNumberMatch</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+class EDIExtItemNumberMatch
+{
+    public str itemid;
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>Match</Name>
+				<Source><![CDATA[
+    //Chercher la description extern du item commandé
+    //Vérifier que le produit exist
+    public  boolean Match( str itemNumber, str customerAccount)
+    {
+        CustVendExternalItem CustExtItemNum;
+        select firstonly CustExtItemNum where CustExtItemNum.ExternalItemId==itemNumber && customerAccount==CustExtItemNum.CustVendRelation;
+        
+    if(CustExtItemNum!=null)
+        {
+            itemid=CustExtItemNum.ItemId;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

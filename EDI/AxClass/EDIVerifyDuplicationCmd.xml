@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIVerifyDuplicationCmd</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+class EDIVerifyDuplicationCmd
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>testDuplicateNumber</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// vérifier que chaque numéro de commande est différent aux autres
+    /// </summary>
+    /// <param name = "worksOrders"></param>
+    /// <returns>boolean</returns>
+    public boolean testDuplicateNumber( XmlNodeList worksOrders )
+    {
+        
+        XmlElement apiModel;
+        str number ;
+        boolean result = true;
+
+        Set worksOrderNumbers = new Set(Types::String); 
+        
+         
+        for (int i = 0; i < worksOrders.length() && result; i++)
+        {   
+           
+            apiModel = worksOrders.item(i);
+          
+            number=apiModel.getNamedElement('Worksordernumber').text();
+
+            if(worksOrderNumbers.in(number))
+            {
+                result=false;
+             
+            }
+            else 
+            {
+                worksOrderNumbers.add(number);
+              
+            }
+
+        }
+        return result;
+
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIImportXMLService</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Service
+/// </summary>
+class EDIImportXMLService extends SysOperationServiceBase
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>InitFromContract</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// InitContract
+    /// </summary>
+    /// <param name = "_contract">_contract</param>
+    protected void InitFromContract(EDIImportXMLContract _contract)
+    {
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validate</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// validate
+    /// </summary>
+    /// <returns>boolean</returns>
+
+    public boolean validate()
+    {
+        return true;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>Run</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Run
+    /// </summary>
+    /// <param name = "_contract">_contract</param>
+    public void Run(EDIImportXMLContract _contract)
+    {
+       // //EDIExportCSVpackingSlipJour ExportCSVpackingSlipJour=new EDIExportCSVpackingSlipJour();
+       // //ExportCSVpackingSlipJour.export();
+       // str file=@"C:\Temp\ENGELVART.xml";
+       //// str fileB=@"C:\Temp\BIOTEX.xml";
+
+       // EDIParseEngelvartXMLfile parse= new EDIParseEngelvartXMLfile();
+       //// EDIParseBiotexXMLfile paseB=new EDIParseBiotexXMLfile();
+       // EDIImportXMLtable cust;
+
+       // if(EDIImportXMLtable::Find().RecId)
+       // {
+       //     parse.ParseXMLFile(file);
+       //     //paseB.parseBiotexFile(fileB);
+
+
+       // }
+       // else
+       // {
+       //     throw error("@EDIImportXMl:NoRecFound");
+       // }
+
+        str file;
+        System.Collections.IEnumerator  enumerator;
+      
+        
+        EDIParseEngelvartXMLfile parse= new EDIParseEngelvartXMLfile();
+        if(EDIImportXMLtable::Find().RecId)
+        {
+            EDIImportXMLtable importXMLtable;
+            select * from importXMLtable;
+            str filePath =importXMLtable.PathFileRecu;
+            str destinationErrorDirectory=importXMLtable.PathFileErroe;
+            str destinationTreatedDirectory= importXMLtable.PathFileTraited;
+
+
+            
+            System.String[] files = System.IO.Directory::GetFiles(filePath,  '*.xml' );
+            enumerator = files.GetEnumerator();
+
+            while (enumerator.MoveNext())
+            {
+                file = enumerator.get_Current();
+                //Str Engelvart= file;  //hedha raw ymathel l filepath mtaa l file
+                str fileName = System.IO.Path::GetFileName(file); //fileName mtaa l fichier
+
+                info(strFmt("Fichier Ouvert: %1",fileName));
+
+                EDIParseEngelvartXMLfile demConn = new EDIParseEngelvartXMLfile();
+                int goodFile =  parse.ParseXMLFile(file);
+                if(goodFile==0)
+                {
+                    System.IO.Directory::Move( file,destinationTreatedDirectory +fileName);
+
+                }
+                else
+                {
+                    System.IO.Directory::Move( file,destinationErrorDirectory +fileName);
+                }
+            }
+        }
+
+        else
+        {
+            throw error("@EDIImportXMl:NoRecFound");
+        }
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

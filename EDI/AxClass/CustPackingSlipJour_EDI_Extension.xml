@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>CustPackingSlipJour_EDI_Extension</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[ExtensionOf(tableStr(CustPackingSlipJour))]
+final class CustPackingSlipJour_EDI_Extension
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>insert</Name>
+				<Source><![CDATA[
+    public void insert()
+    {
+        next insert();
+        EDICustPackingSlipJour custPackingSlipJour;
+        custPackingSlipJour.ExportStatus= "Generated" ;
+        custPackingSlipJour.BOLAddress=this.BOLAddress;
+        custPackingSlipJour.BOLCarrierName= this.BOLCarrierName;
+        custPackingSlipJour.BOLFreightedBy=this.BOLFreightedBy;
+        custPackingSlipJour.BOLPackageAppearance=this.BOLPackageAppearance;
+        custPackingSlipJour.BankLCExportLine=this.BankLCExportLine;
+        custPackingSlipJour.ContactPersonId=this.ContactPersonId;
+        custPackingSlipJour.CustomerRef =this.CustomerRef;
+        custPackingSlipJour.DeliveryDate=this.DeliveryDate;
+        custPackingSlipJour.DeliveryName=this.DeliveryName;
+        custPackingSlipJour.DeliveryPostalAddress=this.DeliveryPostalAddress;
+        custPackingSlipJour.DlvMode=this.DlvMode;
+        custPackingSlipJour.DlvReason=this.DlvReason;
+        custPackingSlipJour.DlvTerm=this.DlvTerm;
+        custPackingSlipJour.DocumentDate=this.DocumentDate;
+        custPackingSlipJour.ExportReason=this.ExportReason;
+        custPackingSlipJour.FreightSlipNum=this.FreightSlipNum;
+        custPackingSlipJour.FreightSlipType=this.FreightSlipType;
+        custPackingSlipJour.InterCompanyCompanyId=this.InterCompanyCompanyId;
+        custPackingSlipJour.InterCompanyPosted=this.InterCompanyPosted;
+        custPackingSlipJour.InterCompanyPurchId=this.InterCompanyPurchId;
+        custPackingSlipJour.InternalPackingSlipId= this.InternalPackingSlipId;
+        custPackingSlipJour.IntrastatDispatch= this.IntrastatDispatch;
+        custPackingSlipJour.IntrastatFulfillmentDate_HU=this.IntrastatFulfillmentDate_HU;
+        custPackingSlipJour.InventProfileType_RU=this.InventProfileType_RU;
+        custPackingSlipJour.InvoiceAccount=this.InvoiceAccount;
+        custPackingSlipJour.InvoiceIssueDueDate_W= this.InvoiceIssueDueDate_W;
+        custPackingSlipJour.InvoicePostalAddress= this.InvoicePostalAddress;
+        custPackingSlipJour.InvoicingName= this.InvoicingName;
+        custPackingSlipJour.LanguageId= this.LanguageId;
+        custPackingSlipJour.LedgerVoucher= this.LedgerVoucher;
+        custPackingSlipJour.ListCode= this.ListCode;
+        custPackingSlipJour.NumberSequenceGroup=this.NumberSequenceGroup;
+        custPackingSlipJour.OffSessionId_RU=this.OffSessionId_RU;
+        custPackingSlipJour.OrderAccount= this.OrderAccount;
+        custPackingSlipJour.PackedExtensions= this.PackedExtensions;
+        custPackingSlipJour.PackingSlipId= this.PackingSlipId;
+        custPackingSlipJour.PackingSlipId= this.PackingSlipNumberingCode_LT;
+        custPackingSlipJour.ParmId= this.ParmId;
+        //this.Partition=custPackingSlipJour.Partition;
+        custPackingSlipJour.PartyTaxID=this.PartyTaxID;
+        custPackingSlipJour.PdsCWQty= this.PdsCWQty;
+        custPackingSlipJour.PostedState= this.PostedState;
+        custPackingSlipJour.PrintBlankDate_LT=this.PrintBlankDate_LT;
+        custPackingSlipJour.PrintMgmtSiteId=this.PrintMgmtSiteId;
+        custPackingSlipJour.Printed= this.Printed;
+        custPackingSlipJour.PurchaseOrder= this.PurchaseOrder;
+        custPackingSlipJour.Qty=this.Qty;
+        custPackingSlipJour.ReasonTableRef_BR= this.ReasonTableRef_BR;
+        custPackingSlipJour.RefNum= this.RefNum;
+        custPackingSlipJour.ReturnItemNum= this.ReturnItemNum;
+        custPackingSlipJour.ReturnPackingSlipId=this.ReturnPackingSlipId;
+        custPackingSlipJour.SalesId= this.SalesId;
+        custPackingSlipJour.SalesType= this.SalesType;
+        custPackingSlipJour.ShipCarrierAccount=this.ShipCarrierAccount;
+        custPackingSlipJour.ShipCarrierBlindShipment=this.ShipCarrierBlindShipment;
+        custPackingSlipJour.ShipCarrierDeliveryContact= this.ShipCarrierDeliveryContact;
+        custPackingSlipJour.ShipCarrierEmail=this.ShipCarrierEmail;
+        custPackingSlipJour.ShipCarrierId=this.ShipCarrierId;
+        custPackingSlipJour.ShipCarrierPhone=this.ShipCarrierPhone;
+        custPackingSlipJour.SourceDocumentHeader= this.SourceDocumentHeader;
+        custPackingSlipJour.TaxID= this.TaxID;
+        custPackingSlipJour.TransportationDeliveryContractor=this.TransportationDeliveryContractor;
+        custPackingSlipJour.TransportationDeliveryLoader=this.TransportationDeliveryLoader;
+        custPackingSlipJour.TransportationDeliveryOwner=this.TransportationDeliveryOwner;
+        custPackingSlipJour.TransportationDocument= this.TransportationDocument;
+        custPackingSlipJour.Volume= this.Volume;
+        custPackingSlipJour.Weight= this.Weight;
+        custPackingSlipJour.WorkerSalesTaker= this.WorkerSalesTaker;
+        custPackingSlipJour.inventLocationId= this.inventLocationId;
+        custpackingslipjour.insert();
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

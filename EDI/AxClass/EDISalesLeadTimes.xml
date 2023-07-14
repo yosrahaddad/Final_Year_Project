@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDISalesLeadTimes</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+ class EDISalesLeadTimes
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>SalesLeadTime</Name>
+				<Source><![CDATA[
+    public void SalesLeadTime( date Deliverydate, str _filexml, str workordernumber)
+    {
+       
+        SalesParameters salesparameters;
+        EDIParseEngelvartXMLfile parse= new EDIParseEngelvartXMLfile();
+        date startDate = today();
+        select firstonly salesparameters ;
+        int LeadTime= salesparameters.LeadTimeSalesDefault;
+        EDIMailNotification tEmail= new EDIMailNotification();
+        
+        //Nombre de jour entre la dta d'envoie et la date de livraison demandée
+        int Days= intvNo (startDate,Deliverydate, IntvScale::YearMonthDay);
+        
+        if (Days < LeadTime)
+        {
+            ///error(strFmt("Alerte client %1", Days));
+            tEmail.sendCustomMail(_filexml,"yosrahaddad99@gmail.com",4,1,workordernumber);
+        }
+        //else
+        //{ 
+        //    info(strFmt("Keep going %1", Days));
+        //}
+        
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

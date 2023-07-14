@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIGetTheNextFile</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+class EDIGetTheNextFile
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>NextFile</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Importer tous les fichier dans le dossier des fichier reçus
+    /// </summary>
+      public  void NextFile ()
+    {
+        str file;
+        System.Collections.IEnumerator  enumerator;
+        EDIImportXMLtable importXMLtable;
+        EDIParseEngelvartXMLfile parse= new EDIParseEngelvartXMLfile();
+        if(EDIImportXMLtable::Find().RecId)
+        {
+            str filePath =importXMLtable.PathFileRecu;
+            str destinationErrorDirectory=importXMLtable.PathFileErroe;
+            str destinationTreatedDirectory= importXMLtable.PathFileTraited;
+           
+            
+            System.String[] files = System.IO.Directory::GetFiles(filePath,  '*.xml' );
+            enumerator = files.GetEnumerator();
+
+            while (enumerator.MoveNext())
+            {
+                file = enumerator.get_Current();
+                str fileName = System.IO.Path::GetFileName(filePath); 
+
+                info(strFmt("Traite le fichier, %1",fileName));
+
+                EDIParseEngelvartXMLfile demConn = new EDIParseEngelvartXMLfile();
+                boolean goodFile =  parse.ParseXMLFile(file);
+                if(goodFile==true)
+                {
+                    System.IO.Directory::Move( file,destinationTreatedDirectory + fileName);
+
+                }
+
+                if(goodFile==false)
+                {
+
+
+                    System.IO.Directory::Move( file,destinationErrorDirectory);
+                }
+            }
+        }
+
+        else
+        {
+            throw error("@EDIImportXMl:NoRecFound");
+        }
+        
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

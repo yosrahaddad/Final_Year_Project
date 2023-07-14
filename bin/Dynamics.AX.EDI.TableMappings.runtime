@@ -1,0 +1,19 @@
+﻿VERSION=1; | Map MapField1  MapField2 ...  \n - Table   TableField1   TableField2
+|	DimensionDefaultMap	DefaultDimension
+-	EDICustPackingSlipTransdup	DefaultDimension
+|	FormletterJournalTrans	Category	InternalJournalId	InventDimId	InventTransId	ItemId	JournalId	NumberSequenceGroup	OrderId	OrigOrderId	TransDate
+-	EDICustPackingSlipTransdup	SalesCategory	PackingSlipId	InventDimId	InventTransId	ItemId	PackingSlipId	PackingSlipId	SalesId	OrigSalesId	DeliveryDate
+|	InterCompanyTrans	InterCompanyInventTransId	InventRefId	InventRefTransId	InventRefType	InventTransId	StockedProduct	TransQty
+-	EDICustPackingSlipTransdup	InterCompanyInventTransId	InventRefId	InventRefTransId	InventRefType	InventTransId	StockedProduct	Qty
+|	IntrastatTransferMap	IntrastatCommodity	IntrastatExclude	IntrastatTransferMap	IntraUnit	InventTransId	InvoiceId	ItemId	ItemType	MarkupPct	NetWeightByUnit	NGPCodesTable_FR	OrigCountryRegionId	OrigState	Port	StatProcId	TransactionCode	Transport	Weight
+-	EDICustPackingSlipTransdup	IntrastatCommodity				InventTransId	PackingSlipId	ItemId				NGPCodesTable_FR	OrigCountryRegionId	OrigStateId	Port	StatProcId	TransactionCode	Transport	Weight
+|	InventTrackingCustJournalTrans	DeliveryPostalAddress	InventTransId	ItemId	JournalId	SalesUnit
+-	EDICustPackingSlipTransdup	DeliveryPostalAddress	InventTransId	ItemId	PackingSlipId	SalesUnit
+|	SalesPurchJournalLineExtension_IN	AssessableValue	AssessableValueAccountingCurrency	CompanyLocation	CreditNoteDate	CustomsMaxRetailPrice	CustomsTariffCodeTable	DirectSettlement	DSA	ExciseRecordType	ExciseTariffCodes	ExciseType	MaximumRetailPrice	SalesTaxFormTypes	ServiceCodeRefRecId	TaxAsPerOriginalInvoice	TaxInformation	TaxWithholdTCSGroup	TaxWithholdTDSGroup
+-	EDICustPackingSlipTransdup																		
+|	SysExtensionSerializerMap	PackedExtensions	PackedPrioritizedIdList
+-	EDICustPackingSlipTransdup	PackedExtensions	
+|	CustVendInvoiceTrans	Category_RU	CurrencyCode	DefaultDimension_RU	Dimension_RU	DiscAmount_JP	DiscPercent_JP	EmplLineType_RU	ExciseAmountMST_RU	ExciseAmount_RU	ExciseValue_RU	ExternalItemId_RU	FacturedFully_RU	FacturedQty_RU	FactureId	FactureModule	IntrastatFulfillmentDate_HU	InventDimId	InventQty	InventTransId	InvoiceDate	InvoiceNum	ItemId	LineAmount	LineAmountMST	LineAmountMST_JP	LineAmountMST_W	LineNum_RU	LineType_RU	Name_JP	Name_RU	NumberSequenceGroupId_RU	ParentRecId	Price	PriceUnit	Price_RU	PurchInternalInvoiceId_RU	Qty	QtyPhysical	RefCommReportTrans_RU	SalesPurchId_RU	SalesPurchOrigId_JP	SalesPurchPrice_JP	SourceDocumentLine	StockedProduct	TaxAmountMST_JP	TaxAmountMST_W	TaxAmount_JP	TaxAmount_RU	TaxCode	TaxGroup	TaxGroup_RU	TaxItemGroup	TaxItemGroup_RU	TransactionCode	Unit	Unit_RU	VATAmountMST_RU	VATAmount_RU	VATValue_RU
+-	EDICustPackingSlipTransdup		CurrencyCode														IntrastatFulfillmentDate_HU		InventQty	InventTransId	DeliveryDate	PackingSlipId	ItemId	AmountCur	ValueMST										PriceUnit			Qty						SourceDocumentLine	StockedProduct										TransactionCode	SalesUnit				
+|	SalesPurchJournalLine	CategoryId	CurrencyCode	DeliveryLocation	DeliveryState	IntrastatCommodity	InventDimId	InventTransId	ItemId	LineAmount	LineNum	SalesPurchQty	SalesPurchUnit	SourceId	SourceRecId	SourceTableId	TaxGroup	TaxItemGroup	TransDate
+-	EDICustPackingSlipTransdup						InventDimId	InventTransId	ItemId		LineNum		SalesUnit	PackingSlipId	RecId	TableId			

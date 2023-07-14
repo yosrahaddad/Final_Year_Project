@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIRetrieveSalesOrderData</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+class EDIRetrieveSalesOrderData 
+{
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>Reserve</Name>
+				<Source><![CDATA[
+    public void Reserve(real _qty, InventDim _inventDim, str _itemid, str _lotId, SalesId _workordernumber)
+    {
+        InventTrans inventTrans;
+        InventTransOrigin inventTransorigin;
+        real var1, var2;
+        FormDataSource inventTrans_DS;
+        INVENTTRANSORIGINSALESLINE inventTransOriginSalesLine;
+        
+        inventTransorigin.initValue();
+        inventTransorigin.ItemId=_itemid;
+        inventTransorigin.InventTransId=_lotId;
+        inventTransorigin.ItemInventDimId=_inventDim.inventDimId;        
+        inventTransorigin.insert();
+        select  inventTransorigin where inventTransorigin.InventTransId==_lotId;
+        
+
+
+        /////inesrt into inventTrans
+        inventTrans.initValue();
+        inventTrans.inventDimId=_inventDim.inventDimId;
+        inventTrans.ItemId=_itemid;
+        inventTrans.Qty=-_qty;
+        inventTrans.StatusReceipt=StatusReceipt::None;
+        inventTrans.StatusIssue=StatusIssue::OnOrder;
+        inventTrans.InventTransOrigin=inventTransorigin.RecId;
+        int org= inventTrans.InventTransOrigin;
+        inventTrans.insert();
+        Info(strFmt("Une ligne de transaction pour l'item %1 est insérée",_itemid) );
+
+        ////inesrt into InventTransOriginSalesLine
+        //inventTransOriginSalesLine.initValue();
+        //inventTransOriginSalesLine.SalesLineDataAreaId='usmf';
+        //inventTransOriginSalesLine.SalesLineInventTransId= _lotId;
+        //inventTransOriginSalesLine.InventTransOrigin=Recid;
+        //inventTransOriginSalesLine.insert();
+       
+       
+        select inventTransOrigin where inventTransorigin.InventTransId==_lotId;
+        select forupdate inventTrans where inventTrans.InventTransOrigin == inventTransOrigin.RecId;
+        try
+        {
+            inventTrans.StatusIssue=StatusIssue::ReservPhysical;
+            ttsbegin;
+            inventTrans.update();
+            ttscommit;
+            //Info(strFmt("Une ligne de transaction pour l'item %1 est insérée",_itemid) );
+            
+        }
+        catch
+        {
+            error(strFmt("Commande %1 : Physique disponible insuffisant, vous pouvez traiter ce problème manuellement",_workordernumber));
+        }   
+             
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

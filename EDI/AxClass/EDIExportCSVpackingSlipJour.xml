@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIExportCSVpackingSlipJour</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+class EDIExportCSVpackingSlipJour
+{
+    
+  }
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>export</Name>
+				<Source><![CDATA[
+    public void export()
+    {    
+        EDICustPackingSlipJour custPackingSlipJour;
+        Counter i;
+        TextIo textIo;
+        //Get Stream
+        System.IO.Stream stream;
+        FileIOPermission fileio;
+        Browser br;
+        str downloadurl;
+     
+        if( EDICustPackingSlipJour::Full())
+        {       
+            while select forupdate custPackingSlipJour where custPackingSlipJour.ExportStatus=="Generated"
+            {
+                var fileName=strFmt("custPackingSlipJour_%1_%2.csv",custPackingSlipJour.LinNum,custPackingSlipJour.InvoiceAccount);
+                var filePath=strFmt("C:\Temp\ExportJournals\%1.csv",fileName);
+                CommaStreamIo io = CommaStreamIo::constructForWrite();
+                textIo=new TextIo (filePath, 'w');
+         
+                // textIo.writeRaw('CustomerRef','ContactPersonId','DeliveryDate','InvoiceAccount','LinNum','Qty');
+                io.write(strFmt(" %1, %2, %3, %4, %5, %6, %7, %8, %9",custPackingSlipJour.PackingSlipId, custPackingSlipJour.CustomerRef, custPackingSlipJour.ContactPersonId,
+                custPackingSlipJour.DeliveryDate, custPackingSlipJour.InvoiceAccount,
+                custPackingSlipJour.LinNum, custPackingSlipJour.Qty,custPackingSlipJour.DeliveryPostalAddress, custPackingSlipJour.ExportStatus));
+                textIo= null;
+
+                ///read stream
+                stream= io.getStream();
+                Stream.Position = 0;
+
+                System.IO.StreamReader reader = new System.IO.StreamReader(stream);
+                str csvFileContent = reader.ReadToEnd();
+                br=new Browser();
+                //save file
+
+                downloadurl =File::SendFileToTempStore(stream,fileName);
+                br.navigate( downloadurl);
+
+                custPackingSlipJour.ExportStatus="Exported";
+                ttsbegin;
+                custPackingSlipJour.update();
+                ttscommit;
+                str stat= custPackingSlipJour.ExportStatus;
+
+           
+                info(strFmt(" File %1 CreatedBy successfully.", filePath));
+                i++;
+            }
+        }
+        else
+        {
+            Error("Désolé! vous-avez exporter tous les bons de livraison disponibles.");
+        }
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

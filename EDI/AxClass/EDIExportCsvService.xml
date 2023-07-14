@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>EDIExportCsvService</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+ class EDIExportCsvService extends SysOperationServiceBase
+{
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>InitFromContract</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// InitContract
+    /// </summary>
+    /// <param name = "_contract">_contract</param>
+    protected void InitFromContract(EDIExportCSVContract _contract)
+    {
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validate</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// validate
+    /// </summary>
+    /// <returns>boolean</returns>
+
+    public boolean validate()
+    {
+        return true;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>Run</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Run
+    /// </summary>
+    /// <param name = "_contract">_contract</param>
+    public void Run(EDIExportCSVContract _contract)
+    {
+        EDIExportCSVpackingSlipJour ExportCSVpackingSlipJour=new EDIExportCSVpackingSlipJour();
+        ExportCSVpackingSlipJour.export();
+        
+
+
+
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
